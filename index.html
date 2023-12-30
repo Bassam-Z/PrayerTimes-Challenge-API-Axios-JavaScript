@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Tiems</title>
+</head>
+<body>
+    <div>
+        <!-- City Name + Date -->
+        <div id="city">
+            <!-- city Name -->
+            <div id="cityName-Date">
+                <h1 id="cityName">Dortmund</h1>
+                <h6 id="date"> 30.12.2023</h6>
+            </div>
+
+            <hr style="color: brown;">
+
+            <!-- Prayer Timing -->
+            <div class="card-container center" style="justify-content: space-around;">
+                <div class="card">
+                    <div class="header">
+                        fajer
+                    </div>
+                    <div class="body center">
+                        <h1 class="time">
+                            04:30
+                        </h1>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="header">
+                        fajer
+                    </div>
+                    <div class="body center">
+                        <h1 class="time">
+                            04:30
+                        </h1>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="header">
+                        fajer
+                    </div>
+                    <div class="body center">
+                        <h1 class="time">
+                            04:30
+                        </h1>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="header">
+                        fajer
+                    </div>
+                    <div class="body center">
+                        <h1 class="time">
+                            04:30
+                        </h1>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="header">
+                        fajer
+                    </div>
+                    <div class="body center">
+                        <h1 class="time">
+                            04:30
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change City  -->
+            <div class="select center">
+                <select name="" id="">
+                    <option value="">Dortmund</option>
+                    <option value="">Bochum</option>
+                    <option value="">Essen</option>
+                    <option value="">Düsseldorf</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+</script>
+
+<style>
+    body {
+        background-image: url('/image/qairo.jpg');
+        height: 100%;
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    #city{
+        padding: 30px;
+    }
+    #city hr{
+        padding: 0;
+        margin: 0;
+        border-color: #f46e39;
+    }
+    h1,h2,h3,h4,h5,h6{
+        margin: 0;
+    }
+    #cityName-Date {
+        color: white;
+    }
+    #cityName {
+        font-size: 72px;
+    }
+    #date {
+        font-size: 32px;
+    }
+    #city .card-container {
+        margin-top: 80px;
+    }
+    .card {
+        width: 12%;
+        height: 200px;
+        background-color: white;
+        font-size: 20px;
+        box-shadow:  0px 10px 5px rgba(0 0 0 / 30% );
+    }
+    .header {
+        background-color: #f46e39;
+        text-align: center;
+        font-weight: bold;
+        font-size: 24px;
+        padding: 10px 0;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .body {
+        height: 74%;
+    }
+    .time{
+        font-size: 32px;
+    }
+    .select {
+        margin-top: 120px;
+    }
+    .select select {
+        color: white;
+        background: none;
+        width: 300px;
+        height: 40px;
+        font-size: 25px;
+        padding: 5px;
+        border-radius: 10px;
+    }
+</style>
