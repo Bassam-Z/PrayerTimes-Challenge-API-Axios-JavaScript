@@ -130,12 +130,10 @@
             // handle success
             const readable = response.data.data.date.readable
             const weekday = response.data.data.date.hijri.weekday.en
-            console.log(readable)
-            console.log(weekday)
+            // console.log(readable)
+            // console.log(weekday)
             document.getElementById("date-value").innerHTML = readable + ' ' + weekday
-            // document.getElementById("date-value").innerHTML = weekday+
             const timings = response.data.data.timings 
-            // console.log(response.data.data.timings);
             fillAdanTimes ("fajr-time", timings.Fajr)
             fillAdanTimes ("dhuhr-time", timings.Dhuhr)
             fillAdanTimes ("asr-time", timings.Asr)
