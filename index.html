@@ -12,7 +12,7 @@
             <!-- city Name -->
             <div id="cityName-Date">
                 <h1 id="cityName">Dortmund</h1>
-                <h6 id="date"> 30.12.2023</h6>
+                <h6 id="date-value"></h6>
             </div>
 
             <hr style="color: brown;">
@@ -21,51 +21,51 @@
             <div class="card-container center" style="justify-content: space-around;">
                 <div class="card">
                     <div class="header">
-                        fajer
+                        Fajr
                     </div>
                     <div class="body center">
-                        <h1 class="time">
-                            04:30
+                        <h1 class="time" id="fajr-time">
+                            
                         </h1>
                     </div>
                 </div>
                 <div class="card">
                     <div class="header">
-                        fajer
+                        Dhuhr
                     </div>
                     <div class="body center">
-                        <h1 class="time">
-                            04:30
+                        <h1 class="time" id="dhuhr-time">
+                        
                         </h1>
                     </div>
                 </div>
                 <div class="card">
                     <div class="header">
-                        fajer
+                        Asr
                     </div>
                     <div class="body center">
-                        <h1 class="time">
-                            04:30
+                        <h1 class="time" id="asr-time">
+                            
                         </h1>
                     </div>
                 </div>
                 <div class="card">
                     <div class="header">
-                        fajer
+                        Maghrib
                     </div>
                     <div class="body center">
-                        <h1 class="time">
-                            04:30
+                        <h1 class="time" id="maghrib-time">
+                            
                         </h1>
                     </div>
                 </div>
                 <div class="card">
                     <div class="header">
-                        fajer
+                        Isha
                     </div>
                     <div class="body center">
-                        <h1 class="time">
-                            04:30
+                        <h1 class="time" id="isha-time">
+                            
                         </h1>
                     </div>
                 </div>
@@ -73,11 +73,8 @@
 
             <!-- Change City  -->
             <div class="select center">
-                <select name="" id="">
-                    <option value="">Dortmund</option>
-                    <option value="">Bochum</option>
-                    <option value="">Essen</option>
-                    <option value="">Düsseldorf</option>
+                <select name="" id="option-select">
+                    
                 </select>
             </div>
         </div>
@@ -85,8 +82,80 @@
 </body>
 </html>
 
-<script>
+<script src="./node_modules/axios/dist/axios.min.js"></script>
 
+<script>
+    let cities = [
+        {
+            name: 'Dortmund'
+        },
+        {
+            name: 'Bochum'
+        },
+        {
+            name: 'Essen'
+        },
+        {
+            name: 'Düsseldorf'
+        }
+    ]
+
+    for(city of cities) {
+        const  cities = 
+        `
+           <option>${city.name}</option>
+        `
+        document.getElementById("option-select").innerHTML +=  cities
+    }
+
+    document.getElementById("option-select").addEventListener("change", function () {
+        document.getElementById("cityName").innerHTML = this.value
+        let cityName = ""
+        for(city of cities) {
+            console.log(city.name)
+            if (city.name == this.value) {
+                cityName = city.name
+            }
+        }
+        getPrayertimsOfCity(cityName)
+    })
+
+    function getPrayertimsOfCity  (cityName)  {
+        let params = {
+            country: "DE",
+            city: cityName//"Dortmund"
+        }
+        axios.get('http://api.aladhan.com/v1/timingsByCity', {params})
+        .then(function (response) {
+            // handle success
+            const readable = response.data.data.date.readable
+            const weekday = response.data.data.date.hijri.weekday.en
+            console.log(readable)
+            console.log(weekday)
+            document.getElementById("date-value").innerHTML = readable + ' ' + weekday
+            // document.getElementById("date-value").innerHTML = weekday+
+            const timings = response.data.data.timings 
+            // console.log(response.data.data.timings);
+            fillAdanTimes ("fajr-time", timings.Fajr)
+            fillAdanTimes ("dhuhr-time", timings.Dhuhr)
+            fillAdanTimes ("asr-time", timings.Asr)
+            fillAdanTimes ("maghrib-time", timings.Maghrib)
+            fillAdanTimes ("isha-time", timings.Isha)
+            
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+    }
+    
+    getPrayertimsOfCity("Dortmund")
+    
+
+    fillAdanTimes = (id, time) => {
+        document.getElementById(id).innerHTML = time
+    }
+    
 </script>
 
 <style>
@@ -115,7 +184,7 @@
     #cityName {
         font-size: 72px;
     }
-    #date {
+    #date-value {
         font-size: 32px;
     }
     #city .card-container {
@@ -150,12 +219,14 @@
         margin-top: 120px;
     }
     .select select {
-        color: white;
         background: none;
         width: 300px;
         height: 40px;
         font-size: 25px;
         padding: 5px;
         border-radius: 10px;
+    }
+    .select select option {
+        background-color: transparent;
     }
 </style>
